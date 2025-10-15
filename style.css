@@ -1,0 +1,365 @@
+/* === Root Variables for Theme Switching === */
+:root {
+  --crt-color: #a8ff60;
+  --crt-accent: #77cc33;
+  --crt-footer: #55aa22;
+}
+
+body[data-theme='amber'] {
+  --crt-color: #ffc94d;
+  --crt-accent: #ffad33;
+  --crt-footer: #cc8833;
+}
+
+/* === Base Layout === */
+body {
+  background-color: #0d0d0d;
+  color: var(--crt-color);
+  font-family: 'Fira Code', 'Courier New', monospace;
+  margin: 0;
+  padding: 1rem;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* === Starfield Canvas === */
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: transparent;
+}
+
+/* === Pixel Font Areas === */
+header,
+nav,
+h1,
+h2,
+.ascii-logo,
+#terminal-intro,
+.cursor {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 10;
+}
+
+/* === Glitch Effect on header === */
+.glitch {
+  color: var(--crt-color);
+  font-size: 1.5rem;
+  position: relative;
+  animation: glitch-anim 2s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0.8;
+  //clip-path: polygon(0 2%, 100% 2%, 100% 15%, 0 15%);
+  animation: glitch-anim 2s infinite;
+  z-index: -1;
+}
+
+.glitch::before {
+  color: #ff3c3c;
+  animation-delay: -0.2s;
+  //clip-path: polygon(0 45%, 100% 45%, 100% 60%, 0 60%);
+  transform: translate(-2px, 0);
+}
+
+.glitch::after {
+  color: #00ffea;
+  animation-delay: -0.4s;
+  //clip-path: polygon(0 75%, 100% 75%, 100% 90%, 0 90%);
+  transform: translate(2px, 0);
+}
+
+@keyframes glitch-anim {
+  0% {
+    //clip-path: polygon(0 2%, 100% 2%, 100% 15%, 0 15%);
+    transform: translate(0);
+  }
+  20% {
+    //clip-path: polygon(0 5%, 100% 5%, 100% 20%, 0 20%);
+    transform: translate(-2px, -1px);
+  }
+  40% {
+    //clip-path: polygon(0 3%, 100% 3%, 100% 16%, 0 16%);
+    transform: translate(2px, 1px);
+  }
+  60% {
+    //clip-path: polygon(0 6%, 100% 6%, 100% 18%, 0 18%);
+    transform: translate(-1px, 0);
+  }
+  80% {
+    //clip-path: polygon(0 2%, 100% 2%, 100% 15%, 0 15%);
+    transform: translate(1px, -1px);
+  }
+  100% {
+    //clip-path: polygon(0 2%, 100% 2%, 100% 15%, 0 15%);
+    transform: translate(0);
+  }
+}
+
+/* === Typography === */
+a {
+  color: var(--crt-color);
+  text-decoration: none;
+}
+a:hover {
+  color: #d4ff87;
+  text-decoration: underline;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.ascii-logo {
+  color: var(--crt-color);
+  font-size: 0.6rem;
+}
+h1 {
+  margin-bottom: 0.3rem;
+}
+.subtitle {
+  color: var(--crt-accent);
+  font-size: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px dashed var(--crt-color);
+  padding-bottom: 0.5rem;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav li {
+  display: inline-block;
+  margin: 0 0.8rem;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+section {
+  margin-bottom: 3rem;
+}
+h2 {
+  font-size: 1rem;
+  border-left: 4px solid var(--crt-color);
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+p,
+ul,
+li {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+ul {
+  padding-left: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.6rem;
+  padding: 2rem 0;
+  border-top: 1px dashed var(--crt-color);
+  color: var(--crt-footer);
+  font-family: 'Fira Code', monospace;
+  position: relative;
+  z-index: 10;
+}
+
+/* === Pixel Art Images === */
+.pixel-art {
+  display: block;
+  max-width: 100px;
+  margin: 1rem auto;
+  image-rendering: pixelated;
+}
+
+/* === Terminal Intro === */
+#terminal-intro {
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  padding: 2rem;
+  color: var(--crt-color);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000;
+  position: relative;
+  z-index: 20;
+}
+#intro-text {
+  margin-bottom: 0.5rem;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  animation: blink 1s infinite;
+  background-color: var(--crt-color);
+}
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+.hidden {
+  display: none;
+}
+
+/* === CRT Overlay === */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 0, 0.05),
+    rgba(0, 255, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+body[data-theme='amber'] .crt-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 204, 0, 0.05),
+    rgba(255, 204, 0, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* === Theme Toggle Button === */
+#theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #111;
+  color: var(--crt-color);
+  border: 1px dashed var(--crt-color);
+  padding: 0.4rem 0.7rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  cursor: pointer;
+  z-index: 10000;
+}
+#theme-toggle:hover {
+  background-color: #222;
+  border-style: solid;
+}
+
+/* === Fake Terminal Prompt === */
+#command-prompt {
+  position: fixed;
+  bottom: 3.5rem;
+  left: 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  color: var(--crt-color);
+  z-index: 9999;
+}
+
+/* === Responsive Styles === */
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  header {
+    margin-bottom: 1rem;
+  }
+
+  .ascii-logo {
+    font-size: 0.45rem;
+  }
+
+  h1.glitch {
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    font-size: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  nav li {
+    display: block;
+    margin: 0.4rem 0;
+  }
+
+  main {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  p,
+  ul,
+  li {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+    padding-left: 0.4rem;
+  }
+
+  .pixel-art {
+    max-width: 60px;
+    margin: 0.8rem auto;
+  }
+
+  #terminal-intro {
+    font-size: 0.7rem;
+    padding: 1rem;
+  }
+
+  #command-prompt {
+    font-size: 0.55rem;
+    bottom: 2.5rem;
+    left: 0.7rem;
+  }
+
+  #theme-toggle {
+    font-size: 0.45rem;
+    padding: 0.3rem 0.5rem;
+    bottom: 0.7rem;
+    right: 0.7rem;
+  }
+}
